@@ -9,8 +9,9 @@ public class SQLiteFactory implements IDaoFactory{
 
 	@Override
 	public IAccountDao createAccountDao() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		SQLAccountDao accountDao = new SQLAccountDao();
+		return accountDao;
 	}
 
 	@Override
