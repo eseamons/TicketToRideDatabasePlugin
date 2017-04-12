@@ -8,6 +8,7 @@ public class Database {
 
 		private static final String DATABASE_FILE = "database.sqlite";
 		private static final String DATABASE_URL = "jdbc:sqlite:" + DATABASE_FILE;
+		private Connection connection;
 
 		public static void initialize() throws ServerException {
 			try {
@@ -18,16 +19,7 @@ public class Database {
 			catch(ClassNotFoundException e) {
 				throw new ServerException("Could not load database driver", e);
 			}
-		}
-
-
-		
-		
-		
-		
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		private Connection connection;
-		
+		}		
 		
 		public Connection getConnection() {
 			return connection;
