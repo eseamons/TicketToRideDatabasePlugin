@@ -4,7 +4,7 @@ import java.rmi.ServerException;
 
 import plugin.Database;
 import plugin.SQLAccountDao;
-import plugin.SQLiteFactory;
+import plugin.SQLFactory;
 import server.plugin.AccountDTO;
 import server.plugin.IAccountDao;
 import server.plugin.IDaoFactory;
@@ -14,7 +14,7 @@ public class TicketToRidePlugin {
 	public static void main(String[] args) {
 		try {
 			Database.initialize();
-			IDaoFactory factory = new SQLiteFactory();
+			IDaoFactory factory = new SQLFactory();
 			IAccountDao accountDao = factory.createAccountDao();
 			
 			Account account = new Account();
