@@ -25,7 +25,6 @@ public class TicketToRidePlugin {
 			
 			AccountDTO accountDTO = new AccountDTO();
 			accountDTO.setAccount(account);
-			accountDTO.setAuth(auth);
 			
 			accountDao.addAccount(accountDTO);
 			//accountDao.clearData();

@@ -103,7 +103,7 @@ public class SQLAccountDao implements IAccountDao{
 	}
 
 	@Override
-	public AccountDTO secectByAuth(String arg0) {
+	public AccountDTO selectByAuth(String arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
