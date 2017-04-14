@@ -1,9 +1,38 @@
 package main;
 
+import java.rmi.ServerException;
+
 import plugin.Database;
+import plugin.SQLAccountDao;
+import plugin.SQLiteFactory;
+import server.plugin.AccountDTO;
+import server.plugin.IAccountDao;
+import server.plugin.IDaoFactory;
+import shared.model_classes.Account;
 
 public class TicketToRidePlugin {
 	public static void main(String[] args) {
-		Database database = new Database();
+		try {
+			Database.initialize();
+			IDaoFactory factory = new SQLiteFactory();
+			IAccountDao accountDao = factory.createAccountDao();
+			
+			Account account = new Account();
+			String auth = "DTEDO-56738-DDERFT";
+			account.setAuthentication(auth);
+			account.setUsername("eseamons");
+			account.setPassword("test");
+			
+			AccountDTO accountDTO = new AccountDTO();
+			accountDTO.setAccount(account);
+			accountDTO.setAuth(auth);
+			
+			accountDao.addAccount(accountDTO);
+			//accountDao.clearData();
+			
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
