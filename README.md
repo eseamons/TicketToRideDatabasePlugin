@@ -1,1 +1,1 @@
-"# TicketToRideDatabasePlugin" 
+# TicketToRideDatabasePlugin
