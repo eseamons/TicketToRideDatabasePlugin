@@ -209,8 +209,51 @@ public class SQLAccountDao implements IAccountDao{
 
 	@Override
 	public AccountDTO selectByUserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		Database database = new Database();
+    	AccountDTO accountDTO = new AccountDTO();
+    	Account account = new Account();
+    	
+		try {
+			database.startTransaction();
+			
+			Connection conn = database.getConnection();
+			
+			Statement stmt = conn.createStatement();
+			
+			String sql = "SELECT * FROM accounts WHERE username = '" + username + "';";
+		      
+		    ResultSet rs = stmt.executeQuery(sql);
+		    
+		    while(rs.next()) {
+		    	String auth = rs.getString("auth");
+		    	username = rs.getString("username");
+		    	String password = rs.getString("password");
+		    	int gameID = rs.getInt("gameID");
+		    	
+		    	
+		    	account = new Account();
+		    	account.setAuthentication(auth);
+		    	account.setUsername(username);
+		    	account.setPassword(password);
+		    	
+		    	accountDTO.setAccount(account);
+		    	accountDTO.setGameID(gameID);
+		    }
+		    
+		    
+		    stmt.close();
+			
+			
+			database.endTransaction(true);
+			
+			
+		} catch (ServerException e) {
+			System.out.println("The server could not start a transaction");
+		} catch (SQLException e) {
+			System.out.println("The statement failed");
+		}
+		
+		return accountDTO;
 	}
 	
 	
