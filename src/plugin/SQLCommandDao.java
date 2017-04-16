@@ -10,10 +10,10 @@ import server.plugin.CommandDTO;
 import server.plugin.ICommandDao;
 import shared.Result;
 
-public class SQLCommandDao implements ICommandDao{
+public class SQLCommandDao implements ICommandDao {
 
 	@Override
-	public Result addCommand(CommandDTO arg0) {
+	public Result addCommand(CommandDTO commandDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -8,22 +8,18 @@ import server.plugin.IGameDao;
 public class SQLFactory implements IDaoFactory{
 
 	@Override
-	public IAccountDao createAccountDao() {
-		
-		SQLAccountDao accountDao = new SQLAccountDao();
-		return accountDao;
+	public IAccountDao createAccountDao() {	
+		return new SQLAccountDao();
 	}
 
 	@Override
-	public ICommandDao createCommandDao() {
-		// TODO Auto-generated method stub
-		return null;
+	public ICommandDao createCommandDao() {		
+		return new SQLCommandDao();
 	}
 
 	@Override
 	public IGameDao createGameDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SQLGameDao();
 	}
 
 	

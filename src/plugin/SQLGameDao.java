@@ -13,8 +13,7 @@ import shared.Result;
 public class SQLGameDao implements IGameDao{
 
 	@Override
-	public Result addGame(GameDTO arg0) {
-		// TODO Auto-generated method stub
+	public Result addGame(GameDTO gameDTO) {
 		return null;
 	}
 
