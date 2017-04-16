@@ -1,6 +1,7 @@
 package main;
 
 import java.rmi.ServerException;
+import java.util.Set;
 
 import plugin.Database;
 import plugin.SQLAccountDao;
@@ -18,15 +19,21 @@ public class TicketToRidePlugin {
 			IAccountDao accountDao = factory.createAccountDao();
 			
 			Account account = new Account();
-			String auth = "DTEDO-56738-DDERFT";
-			account.setAuthentication(auth);
+			account.setAuthentication("DTEDO-56738-DDERFT");
 			account.setUsername("eseamons");
 			account.setPassword("test");
 			
 			AccountDTO accountDTO = new AccountDTO();
 			accountDTO.setAccount(account);
+			accountDTO.setGameID(1);
 			
-			accountDao.addAccount(accountDTO);
+			//accountDao.addAccount(accountDTO);
+			Set<AccountDTO> accountDTOList = accountDao.getAll();
+		
+			for(AccountDTO accDTO : accountDTOList) {
+				System.out.println(accDTO.getGameID());
+			}
+			
 			//accountDao.clearData();
 			
 		} catch (ServerException e) {

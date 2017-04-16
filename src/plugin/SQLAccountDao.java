@@ -2,8 +2,10 @@ package plugin;
 
 import java.rmi.ServerException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 import java.util.Set;
 
 import server.plugin.AccountDTO;
@@ -20,6 +22,7 @@ public class SQLAccountDao implements IAccountDao{
 		String auth = account.getAuthentication();
 		String username = account.getUsername();
 		String password = account.getPassword();
+		int gameID = accountDTO.getGameID();
 		
 		try {
 			database.startTransaction();
@@ -38,15 +41,22 @@ public class SQLAccountDao implements IAccountDao{
 
 					"username TEXT NOT NULL UNIQUE," +
 
-					"password TEXT NOT NULL);" +
+					"password TEXT NOT NULL," +
 					
-					"INSERT INTO accounts (auth, username, password) VALUES ('"
+					"gameID Integer NOT NULL" +
+					
+					");" +
+					
+					"INSERT INTO accounts (auth, username, password, gameID) VALUES ('"
 					+ auth +
 					"', '"
 					+ username +
 					"', '"
 					+ password +
-					"')"
+					"', " +
+					gameID +
+					
+					")"
 					;
 		      
 		      stmt.executeUpdate(sql);
@@ -61,6 +71,7 @@ public class SQLAccountDao implements IAccountDao{
 			return new Result(false, e.getMessage());
 		} catch (SQLException e) {
 			System.out.println("The statement failed");
+			System.out.println(e.getMessage());
 			return new Result(false, e.getMessage());
 		}
 		return new Result(true, "");
@@ -93,23 +104,68 @@ public class SQLAccountDao implements IAccountDao{
 			System.out.println("The statement failed");
 			return new Result(false, e.getMessage());
 		}
+		
 		return new Result(true, "");
 	}
 
 	@Override
 	public Set<AccountDTO> getAll() {
+		Database database = new Database();
+		Set<AccountDTO> accountDTOSet = new HashSet<>();
+		
+		try {
+			database.startTransaction();
+			
+			Connection conn = database.getConnection();
+			
+			Statement stmt = conn.createStatement();
+			
+			String sql = "SELECT * FROM accounts";
+		      
+		    ResultSet rs = stmt.executeQuery(sql);
+		    
+		    while(rs.next()) {
+		    	String auth = rs.getString("auth");
+		    	String username = rs.getString("username");
+		    	String password = rs.getString("password");
+		    	int gameID = rs.getInt("gameID");
+		    	
+		    	AccountDTO accountDTO = new AccountDTO();
+		    	
+		    	Account account = new Account();
+		    	account.setAuthentication(auth);
+		    	account.setUsername(username);
+		    	account.setPassword(password);
+		    	
+		    	accountDTO.setAccount(account);
+		    	accountDTO.setGameID(gameID);
+		    	accountDTOSet.add(accountDTO);
+		    }
+		    
+		    
+		    stmt.close();
+			
+			
+			database.endTransaction(true);
+			
+			
+		} catch (ServerException e) {
+			System.out.println("The server could not start a transaction");
+		} catch (SQLException e) {
+			System.out.println("The statement failed");
+		}
+		
+		return accountDTOSet;
+	}
+
+	@Override
+	public AccountDTO selectByAuth(String auth) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AccountDTO selectByAuth(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AccountDTO selectByUserName(String arg0) {
+	public AccountDTO selectByUserName(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
