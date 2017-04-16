@@ -28,11 +28,15 @@ public class TicketToRidePlugin {
 			accountDTO.setGameID(1);
 			
 			//accountDao.addAccount(accountDTO);
-			Set<AccountDTO> accountDTOList = accountDao.getAll();
-		
-			for(AccountDTO accDTO : accountDTOList) {
-				System.out.println(accDTO.getGameID());
-			}
+			//Set<AccountDTO> accountDTOList = accountDao.getAll();
+//		
+//			for(AccountDTO accDTO : accountDTOList) {
+//				System.out.println(accDTO.getGameID());
+//			}
+			accountDTO = accountDao.selectByAuth(account.getAuthentication());
+			account = accountDTO.getAccount();
+			
+			System.out.println(account.getUsername());
 			
 			//accountDao.clearData();
 			
