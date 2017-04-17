@@ -70,13 +70,13 @@ public class JSONAccountDao implements IAccountDao {
 			}
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		}
-		return null;
+		return new Result(true, "");
 	}
 
 	@Override
@@ -85,10 +85,11 @@ public class JSONAccountDao implements IAccountDao {
 			FileWriter file = new FileWriter(path);
 			file.write("");
 			file.flush();
+			file.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		}
-		return null;
+		return new Result(true, "");
 	}
 
 	@Override
@@ -198,5 +199,4 @@ public class JSONAccountDao implements IAccountDao {
 		}
 		return null;
 	}
-
 }
