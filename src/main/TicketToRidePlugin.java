@@ -4,9 +4,12 @@ import java.util.Set;
 
 import plugin.JSONFactory;
 import server.plugin.AccountDTO;
+import server.plugin.CommandDTO;
 import server.plugin.GameDTO;
 import server.plugin.IAccountDao;
+import server.plugin.ICommandDao;
 import server.plugin.IGameDao;
+import shared.command_classes.Command;
 import shared.model_classes.Account;
 import shared.model_classes.Game;
 
@@ -77,5 +80,74 @@ public class TicketToRidePlugin {
 //		}
 //		
 //		gameDAO.clearAllGames();
+//		
+//		ICommandDao commandDAO = factory.createCommandDao();
+//
+//		CommandDTO dto = new CommandDTO();
+//		Command command = new Command();
+//		command.setCmdID(0);
+//		dto.setCommand(command);
+//		dto.setGameID(0);
+//		commandDAO.addCommand(dto);
+//		
+//		dto = new CommandDTO();
+//		command = new Command();
+//		command.setCmdID(1);
+//		dto.setCommand(command);
+//		dto.setGameID(0);
+//		commandDAO.addCommand(dto);
+//		
+//		dto = new CommandDTO();
+//		command = new Command();
+//		command.setCmdID(2);
+//		dto.setCommand(command);
+//		dto.setGameID(1);
+//		commandDAO.addCommand(dto);
+//		
+//		dto = new CommandDTO();
+//		command = new Command();
+//		command.setCmdID(3);
+//		dto.setCommand(command);
+//		dto.setGameID(0);
+//		commandDAO.addCommand(dto);
+//		
+//		dto = new CommandDTO();
+//		command = new Command();
+//		command.setCmdID(4);
+//		dto.setCommand(command);
+//		dto.setGameID(0);
+//		commandDAO.addCommand(dto);
+//		
+//		dto = new CommandDTO();
+//		command = new Command();
+//		command.setCmdID(5);
+//		dto.setCommand(command);
+//		dto.setGameID(1);
+//		commandDAO.addCommand(dto);
+//		
+//		Set<CommandDTO> commandList = commandDAO.getAll();
+//		Set<CommandDTO> commandListByID = commandDAO.selectByGameID(0);
+//		
+//		System.out.println("All:");
+//		for(CommandDTO commandDTO : commandList){
+//			System.out.println("Cmd" + commandDTO.getCommand().getCmdID());
+//			System.out.println(commandDTO.getGameID());
+//		}
+//		System.out.println("\nID 0:");
+//		for(CommandDTO commandDTO : commandListByID){
+//			System.out.println("Cmd" + commandDTO.getCommand().getCmdID());
+//			System.out.println(commandDTO.getGameID());
+//		}
+//		
+//		commandDAO.deleteGameCommands(0);
+//		commandList = commandDAO.getAll();
+//		
+//		System.out.println("\nAll without game 0:");
+//		for(CommandDTO commandDTO : commandList){
+//			System.out.println("Cmd" + commandDTO.getCommand().getCmdID());
+//			System.out.println(commandDTO.getGameID());
+//		}
+//		
+//		commandDAO.clearData();
 	}
 }

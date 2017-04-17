@@ -17,11 +17,9 @@ import org.json.simple.parser.ParseException;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
 
-import server.plugin.AccountDTO;
 import server.plugin.GameDTO;
 import server.plugin.IGameDao;
 import shared.Result;
-import shared.model_classes.Account;
 import shared.model_classes.Game;
 
 public class JSONGameDao implements IGameDao {
@@ -115,17 +113,17 @@ public class JSONGameDao implements IGameDao {
 				}
 			}
 			FileWriter file = new FileWriter(path);
-			file.write(obj.toString());;
+			file.write(obj.toString());
 			file.flush();
 			file.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			return new Result(false, e.getMessage());
 		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
-		return null;
+			return new Result(false, e.getMessage());
+		}
+		return new Result(true, "");
 	}
 
 	@Override
