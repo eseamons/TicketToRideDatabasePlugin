@@ -27,6 +27,14 @@ public class JSONAccountDao implements IAccountDao {
 	
 	private String path = "JSONdata\\accounts.json";
 
+	public JSONAccountDao() {
+		File dir = new File("JSONdata");
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+	}
+	
+	
 	@Override
 	public Result addAccount(AccountDTO arg0) {
 		JSONParser parser = new JSONParser();

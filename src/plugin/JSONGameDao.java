@@ -26,6 +26,13 @@ public class JSONGameDao implements IGameDao {
 	
 	private String path = "JSONdata\\games.json";
 
+	public JSONGameDao() {
+		File dir = new File("JSONdata");
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+	}
+	
 	@Override
 	public Result addGame(GameDTO arg0) {
 		JSONParser parser = new JSONParser();

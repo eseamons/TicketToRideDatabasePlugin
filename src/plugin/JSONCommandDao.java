@@ -26,6 +26,13 @@ public class JSONCommandDao implements ICommandDao {
 	
 	private String path = "JSONData\\commands.json";
 
+	public JSONCommandDao() {
+		File dir = new File("JSONdata");
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+	}
+	
 	@Override
 	public Result addCommand(CommandDTO arg0) {
 		JSONParser parser = new JSONParser();
