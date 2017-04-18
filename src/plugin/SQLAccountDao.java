@@ -67,6 +67,8 @@ public class SQLAccountDao implements IAccountDao{
 			
 			
 		} catch (ServerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("The server could not start a transaction");
 			return new Result(false, e.getMessage());
 		} catch (SQLException e) {
@@ -98,6 +100,8 @@ public class SQLAccountDao implements IAccountDao{
 			
 			
 		} catch (ServerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("The server could not start a transaction");
 			return new Result(false, e.getMessage());
 		} catch (SQLException e) {
@@ -150,6 +154,8 @@ public class SQLAccountDao implements IAccountDao{
 			
 			
 		} catch (ServerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("The server could not start a transaction");
 		} catch (SQLException e) {
 			System.out.println("The statement failed");
@@ -160,6 +166,7 @@ public class SQLAccountDao implements IAccountDao{
 
 	@Override
 	public AccountDTO selectByAuth(String auth) {
+		System.out.println("Selecting Account by auth code");
 		Database database = new Database();
     	AccountDTO accountDTO = new AccountDTO();
     	Account account = new Account();
@@ -199,6 +206,8 @@ public class SQLAccountDao implements IAccountDao{
 			
 			
 		} catch (ServerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("The server could not start a transaction");
 		} catch (SQLException e) {
 			System.out.println("The statement failed");
@@ -248,6 +257,8 @@ public class SQLAccountDao implements IAccountDao{
 			
 			
 		} catch (ServerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("The server could not start a transaction");
 		} catch (SQLException e) {
 			System.out.println("The statement failed");

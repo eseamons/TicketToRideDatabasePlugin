@@ -70,10 +70,16 @@ public class JSONAccountDao implements IAccountDao {
 			}
 			
 		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return new Result(false, e.getMessage());
 		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return new Result(false, e.getMessage());
 		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return new Result(false, e.getMessage());
 		}
 		return new Result(true, "");
