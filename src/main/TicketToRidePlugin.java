@@ -18,22 +18,22 @@ import shared.model_classes.Game;
 public class TicketToRidePlugin {
 	public static void main(String[] args) {
 		
-        IDaoFactory daoFactory = new JSONFactory();
-        IAccountDao accountDao = daoFactory.createAccountDao();
-        Account account = new Account();
-        account.setAuthentication("DTERE-3483794-UIOUP");
-        account.setUsername("myuser");
-        account.setPassword("mypass");
-        AccountDTO accountDTO = new AccountDTO();
-        AccountDTO outAccountDTO = new AccountDTO();
-        accountDTO.setAccount(account);
-        accountDTO.setGameID(20);
-        accountDao.clearData();
-        accountDao.addAccount(accountDTO);
-
-        outAccountDTO = accountDao.selectByAuth("DTERE-3483794-UIOUP");
-        Account outAccount = outAccountDTO.getAccount();
-        int outGameID = outAccountDTO.getGameID();
+//        IDaoFactory daoFactory = new JSONFactory();
+//        IAccountDao accountDao = daoFactory.createAccountDao();
+//        Account account = new Account();
+//        account.setAuthentication("DTERE-3483794-UIOUP");
+//        account.setUsername("myuser");
+//        account.setPassword("mypass");
+//        AccountDTO accountDTO = new AccountDTO();
+//        AccountDTO outAccountDTO = new AccountDTO();
+//        accountDTO.setAccount(account);
+//        accountDTO.setGameID(20);
+//        accountDao.clearData();
+//        accountDao.addAccount(accountDTO);
+//
+//        outAccountDTO = accountDao.selectByAuth("DTERE-3483794-UIOUP");
+//        Account outAccount = outAccountDTO.getAccount();
+//        int outGameID = outAccountDTO.getGameID();
 		
 		
 		

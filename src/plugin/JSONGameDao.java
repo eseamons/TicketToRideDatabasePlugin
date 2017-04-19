@@ -224,7 +224,7 @@ public class JSONGameDao implements IGameDao {
 				String gameStr = (String) gameObj.get("game");
 				Game game = (Game) JsonReader.jsonToJava(gameStr);
 				if(arg0.getGameID() == gameID){
-					gameObj.replace("game", game);
+					gameObj.replace("game", JsonWriter.toJson(game));
 					
 					FileWriter file = new FileWriter(path);
 					file.write(obj.toString());;
